@@ -35,4 +35,6 @@ def my_task_retry(self, x, y):
 @app.task
 def update_status():
     for obj_ in TestModel.objects.filter(date_start__lt=datetime.datetime.now()):
-        obj_.status = 'New status'
+        if obj_.status == 'no':
+            obj_.status = 'yes'
+            obj_.save()
