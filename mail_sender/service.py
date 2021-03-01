@@ -14,4 +14,4 @@ def send(user_email):
 def test_task(a: int, b: int):
     for _ in range(100):
         a += b
-    print(a, b)
+    return a
