@@ -1,5 +1,7 @@
+import datetime
+
 from core.celery import app
-from .models import Contact
+from .models import Contact, TestModel
 from .service import test_task
 
 
@@ -28,3 +30,9 @@ def my_task_retry(self, x, y):
         return x + y
     except Exception as exc:
         raise self.retry(exc=exc, countdown=60)
+
+
+@app.task
+def update_status():
+    for obj_ in TestModel.objects.filter(date_start__lt=datetime.datetime.now()):
+        obj_.status = 'New status'

@@ -10,4 +10,5 @@ class Contact(models.Model):
 
 
 class TestModel(models.Model):
-    ...
+    status = models.CharField(max_length=100)
+    date_start = models.DateTimeField(auto_now_add=True)
